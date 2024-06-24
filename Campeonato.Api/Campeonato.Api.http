@@ -1,0 +1,6 @@
+@Campeonato.Api_HostAddress = http://localhost:5174
+
+GET {{Campeonato.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
