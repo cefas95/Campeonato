@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campeonato.Api", "Campeonato.Api\Campeonato.Api.csproj", "{3D87150A-96C2-43BB-94EA-7569B9BBAC70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Campeonato.Api", "Campeonato.Api\Campeonato.Api.csproj", "{3D87150A-96C2-43BB-94EA-7569B9BBAC70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campeonato.Entities", "Campeonato.Entities\Campeonato.Entities.csproj", "{B3CC6A8C-8F08-44E7-94E9-7E3068AA6C3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Campeonato.Entities", "Campeonato.Entities\Campeonato.Entities.csproj", "{B3CC6A8C-8F08-44E7-94E9-7E3068AA6C3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campeotano.Repositories", "Campeotano.Repositories\Campeotano.Repositories.csproj", "{CC2942F1-44CE-4F0E-8158-032527AFFED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Campeotano.Repositories", "Campeotano.Repositories\Campeotano.Repositories.csproj", "{CC2942F1-44CE-4F0E-8158-032527AFFED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Campeonato.Persistence", "Campeonato.Persistence\Campeonato.Persistence.csproj", "{EA93C10C-1E64-4DEF-A980-623EB649BAA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{CC2942F1-44CE-4F0E-8158-032527AFFED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC2942F1-44CE-4F0E-8158-032527AFFED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC2942F1-44CE-4F0E-8158-032527AFFED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA93C10C-1E64-4DEF-A980-623EB649BAA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA93C10C-1E64-4DEF-A980-623EB649BAA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA93C10C-1E64-4DEF-A980-623EB649BAA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA93C10C-1E64-4DEF-A980-623EB649BAA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

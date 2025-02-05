@@ -1,52 +1,63 @@
 ﻿using Campeonato.Entities;
+using Campeonato.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Campeotano.Repositories
 {
-    public class EquipRepository
+    public class EquipRepository : IEquipRepository
     {
-        private readonly List<Equipo> equiposList;
-        public EquipRepository()
-        {
-            equiposList = new List<Equipo>();
-            equiposList.Add(new Equipo() { Id = 1, Name = "Armatex" });
-            equiposList.Add(new Equipo() { Id = 2, Name = "Santos" });
-            equiposList.Add(new Equipo() { Id = 1, Name = "Galaxi" });
+        private readonly AplicationDbContext context;
 
-        }
-        public List<Equipo> Get()
+        public EquipRepository(AplicationDbContext context)
         {
-            return equiposList;
+            this.context = context;
+        }
+        public async Task<List<Equipo>> GetAsync()
+        {
+            return await context.Equipos.ToListAsync();
         }
 
-        public Equipo? Get(int id)
+        public async Task<Equipo?> GetAsync(int id)
         {
-            return equiposList.FirstOrDefault(x=>x.Id== id); 
+
+            return await context.Equipos.FirstOrDefaultAsync(x => x.Id == id);
 
         }
-        public void Add(Equipo equipo)
+        public async Task<int> AddAsync(Equipo equipo)
         {
-            var lastItem = equiposList.MaxBy(x => x.Id);
-            equipo.Id = lastItem is null ? 1 : lastItem.Id +1;
-            equiposList.Add(equipo);
-         }
+            context.Equipos.Add(equipo);
+            await context.SaveChangesAsync();
+            return equipo.Id;
 
-        public void Update(int id, Equipo equipo) 
+        }
+
+        public async Task UpdateAsync(int id, Equipo equipo)
         {
-            var item = Get(id);
-            if (item is not  null) { 
+            var item = await GetAsync(id);
+            if (item is not null)
+            {
                 item.Name = equipo.Name;
                 item.Status = equipo.Status;
+
+                context.Update(item);
+                await context.SaveChangesAsync();
             }
-        
+
         }
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var item = Get(id);
-            if (item is not null) 
-            {equiposList.Remove(item); 
+            var item = await GetAsync(id);
+            if (item is not null)
+            {
+                context.Equipos.Remove(item);
+                await context.SaveChangesAsync();
             }
 
         }
 
+    }
+
+    public interface IEquipRepository
+    {
     }
 }

@@ -8,42 +8,42 @@ namespace Campeonato.Api.Controllers
     [Route("api/equipos")]
     public class EquiposController : ControllerBase
     {
-        private readonly EquipRepository repository;
+        private readonly IEquipRepository repository;
 
-        public EquiposController(EquipRepository repository)
+        public EquiposController(IEquipRepository repository)
         {
             this.repository = repository;
         }
         [HttpGet]
-        public ActionResult<List<Equipo>> Get() 
+        public async Task<IActionResult> Get() 
         {
-            var data = repository.Get();
+            var data =await repository.GetAsync();
             return Ok(data);
         }
         [HttpGet("{id:int}")]
-        public ActionResult<Equipo> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var item = repository.Get(id);
+            var item = await repository.GetAsync(id);
             return item is not null? Ok(item) : NotFound();
         }
 
         [HttpPost]
-        public ActionResult<Equipo> Post(Equipo equipo)
+        public async Task <IActionResult> Post(Equipo equipo)
         { 
-            repository.Add(equipo);
+            await repository.AddAsync(equipo);
             return Ok(equipo);
         }
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, Equipo equipo)
+        public async Task <IActionResult> Put(int id, Equipo equipo)
         { 
-            repository.Update(id, equipo);
+           await repository.UpdateAsync(id, equipo);
             return Ok();
         }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id) 
+        public async Task<IActionResult> Delete(int id) 
         {
-            repository.Delete(id);
+           await  repository.DeleteAsync(id);
             return Ok();
 
         }

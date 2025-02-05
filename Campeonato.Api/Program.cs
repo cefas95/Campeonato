@@ -1,4 +1,6 @@
 using Campeotano.Repositories;
+using Campeonato.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Configuring Context
+builder.Services.AddDbContext<AplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"));
+
+});
+
 //Registering services
-builder.Services.AddSingleton<EquipRepository>();
+builder.Services.AddTransient<IEquipRepository, EquipRepository>();
 
 var app = builder.Build();
 
